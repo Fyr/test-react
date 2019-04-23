@@ -1,30 +1,28 @@
 import {App} from './App';
 import { connect } from 'react-redux';
+import { fetchDog, fetchCat } from './actions';
 
 const userClicked = (id) => ({
   type: 'USER_CLICKED',
   data: {id}
 })
 
-/*
-const mapStateToProps = (store) => {
+
+const mapStateToProps = (state) => {
   return {
-    users: store.users
+    users: state.userReducer.users,
+    apiData: state.apiReducer
   };
 }
-*/
+
 const mapDispatchToProps = function(dispatch, obj) {
   console.log('mapDispatchToProps', dispatch, obj);
   return {
-    ...dispatch,
+    fetchDog: () => dispatch(fetchDog()),
+    fetchCat: () => dispatch(fetchCat()),
     handleClick: (id) => dispatch(userClicked(id))
   }
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(App);
+ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
-
-export default connect((state) => {
-    console.log('Connect:', state);
-    return state;
-})(App);

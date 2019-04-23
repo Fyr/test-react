@@ -13,3 +13,19 @@ export const requestDogError = () => {
 export const fetchDog = () => {
     return { type: 'FETCHED_DOG' }
 };
+
+export const requestCat = () => {
+    return { type: 'REQUESTED_CAT' }
+};
+
+export const requestCatSuccess = (data) => {
+    return { type: 'REQUESTED_CAT_SUCCEEDED', url: data[0].url }
+};
+
+export const requestCatError = () => {
+    return { type: 'REQUESTED_CAT_FAILED' }
+};
+
+export const fetchCat = () => {
+    return { type: 'FETCHED_CAT' }
+};
