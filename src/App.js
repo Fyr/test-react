@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { User } from './components/User';
+import { fetchDog } from './actions';
 
 export class App extends Component {
 
@@ -12,7 +13,9 @@ export class App extends Component {
 
   render() {
     const {users} = this.props;
+  console.log('APP Props:', this.props);
     return (
+        <div>
       <table border="1">
         <tbody>
           <tr>
@@ -28,7 +31,15 @@ export class App extends Component {
           }
         </tbody>
       </table>
-    );
+<button onClick={() => this.props.dispatch(fetchDog())}>Show Dog</button>
+{this.props.apiData.loading
+    ? <p>Loading...</p>
+: this.props.apiData.error
+    ? <p>Error, try again</p>
+: <p><img src={this.props.apiData.url} alt="dog"/></p>}
+</div>
+
+);
   }
 
 }
